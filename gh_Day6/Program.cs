@@ -34,9 +34,10 @@ namespace gh_Day6
                 }
             }
 
-            public void Attack()  //  = 공격
+            public void Attack(Slime slime)  //  = 공격
             {
                 Console.WriteLine($"적에게 {AttackDamage} 만큼의 데미지를 입혔습니다!");
+                slime.TakeDamage(AttackDamage);
             }
 
             public void TakeDamage(int damage) // = 피격
@@ -75,7 +76,15 @@ namespace gh_Day6
 
         static void Main(string[] args) // 구현 테스트
         {
-            Console.WriteLine("테스트");
+            Chracter chracter = new Chracter();
+            Slime slime = new Slime();
+
+            slime.Attack(chracter);
+            chracter.Attack(slime);
+            slime.Attack(chracter);
+            chracter.Attack(slime);
+            slime.Attack(chracter);
+            chracter.Attack(slime);
         }
     }
 }
