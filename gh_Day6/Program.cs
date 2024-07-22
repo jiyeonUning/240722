@@ -49,6 +49,30 @@ namespace gh_Day6
             }
         }
 
+        class Slime  // 테스트를 위해 구현한 적대 대상 : 슬라임
+        {
+            public string name = "슬라임";
+            public int hp = 30;
+            public int attackChracter = 5;
+
+            public void Attack(Chracter chracter)
+            {
+                Console.WriteLine($"{name}이(가) 플레이어에게 {attackChracter}의 데미지를 입혔습니다!");
+                chracter.TakeDamage(attackChracter);
+            }
+
+
+            public void TakeDamage(int damage) 
+            {
+                Console.WriteLine($"{name}이(가) {damage}의 데미지를 받았습니다.");
+                hp -= damage;
+                Console.WriteLine($"{name}의 체력은 현재 {hp} 입니다.");
+
+                if (hp <= 0) { Console.WriteLine($"{name}이(가) 쓰러집니다..."); }
+            }
+        }
+
+
         static void Main(string[] args) // 구현 테스트
         {
             Console.WriteLine("테스트");
