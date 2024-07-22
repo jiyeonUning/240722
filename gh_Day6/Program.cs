@@ -1,39 +1,55 @@
-﻿namespace gh_Day6
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace gh_Day6
 {
-    /*
-     과제 1. Chracter 클래스 선언하기
-    Chracter 클래스를 선언하고, 클래스가 가져야 할 필드와 메서드는 아래와 같다.
-    필드
-    레벨
-    체력
-    이동 속도
-    공격력
-
-    메서드
-    전진
-    후진
-    좌회전(90도)
-    우회전(90도)
-    공격
-    피격
-
-    제출 형태
-    C# 콘솔 프로젝트
-    개인 과제용 Git Repository 디렉토리 생성 후 Push
-    디렉토리 이름 : 내 제출일 6자 (Ex> 240619)
-     */
-
     internal class Program
     {
         class Chracter
-        {                              //   ~필드~
+        {                              //         ~ 필드 ~
             public int Level;          //  = 레벨
             private int hp = 100;      //  = 체력, 기본값 100 설정
             public float speed;        //  = 이동속도
-            public int damage;         //  = 공격력
+            public int AttackDamage = 10;   //  = 공격력, 기본값 10 설정
+
+
+            public void Move()           //        ~ 메서드 ~
+            {
+
+                string input = Console.ReadLine();  // = 방향키 설정.
+
+                switch(input)                       // = 움직임 동작
+                {
+                    case "w":
+                        Console.WriteLine("앞으로 전진 합니다.");
+                        break;
+                    case "s":
+                        Console.WriteLine("뒤로 후진합니다.");
+                        break;
+                    case "a":
+                        Console.WriteLine("90도로 좌회전 합니다.");
+                        break;
+                    case "d":
+                        Console.WriteLine("90도로 우회전 합니다.");
+                        break;
+                }
+            }
+
+            public void Attack()  //  = 공격
+            {
+                Console.WriteLine($"적에게 {AttackDamage} 만큼의 데미지를 입혔습니다!");
+            }
+
+            public void TakeDamage(int damage) // = 피격
+            {
+                Console.WriteLine($"플레이어가 {damage}의 데미지를 받았습니다.");
+                hp -= damage;
+                Console.WriteLine($"플레이어의 체력은 현재 {hp} 입니다.");
+                
+                if (hp <= 0 ) { Console.WriteLine("플레이어가 쓰러졌습니다..."); }
+            }
         }
 
-        static void Main(string[] args)
+        static void Main(string[] args) // 구현 테스트
         {
             Console.WriteLine("테스트");
         }
